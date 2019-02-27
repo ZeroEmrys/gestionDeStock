@@ -12,6 +12,8 @@ import { ListComponent } from './components/list/list.component';
 import { CreateComponent } from './components/create/create.component';
 import { EditComponent } from './components/edit/edit.component';
 
+import { MaterielService } from './materiel.service';
+
 //configuration of routes
 const routes: Routes = [
   {path: 'create', component: CreateComponent},
@@ -35,7 +37,8 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     MatToolbarModule
   ],
-  providers: [],
+//ajout des service dans provider
+  providers: [MaterielService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

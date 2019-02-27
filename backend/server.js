@@ -1,11 +1,14 @@
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-
-import Issue from './models/Issue';
-import { isBuffer } from 'util';
-import { runInNewContext } from 'vm';
+//import express from 'express'
+//import cors from 'cors';
+//import bodyParser from 'body-parser';
+//import mongoose from 'mongoose';
+//import { isBuffer } from 'util';
+//import { runInNewContext } from 'vm';
+const express       = require("express");
+const cors          = require("cors");
+const bodyParser    = require("body-parser");
+const mongoose      = require("mongoose");
+const Materiel         = require("./models/Materiel");
 
 const app = express();
 const router = express.Router();
@@ -14,7 +17,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 //connexion on mongoDB
-mongoose.connect('mongodb://localhost:27017/issues');
+mongoose.connect('mongodb://localhost:27017/ongProject');
 //conxion on mongoose
 const connection = mongoose.connection;
 //connexion on mongoDB when we start server
@@ -22,58 +25,61 @@ connection.once('open', () =>{
     console.log('MongoDB dia mandeha soa amatsara');
 });
 
-router.route('/issues').get((req, res)=>{
-    Issue.find((err, issues)=> {
+router.route('/materiels').get((req, res)=>{
+    Materiel.find((err, materiel)=> {
         if(err)
             console.log(err);
         else
-            res.json(issues);
+            res.json(materiel);
     });
 
 });
 
-router.route('/issues/:id').get((req, res)=>{
-    Issue.findById(req.params.id, (err, issue)=>{
+router.route('/materiels/:id').get((req, res)=>{
+    Materiel.findById(req.params.id, (err, materiel)=>{
         if(err)
             console.log(err);
         else
-            res.json(issues);
+            res.json(materiel);
     });
 });
 
-router.route('/issues/add').post((req, res)=>{
-    let issue = new Issue(req.body);
-    issue.save()
-    .then(issue=>{
-        res.status(200).json({'issue':'Fanampiana vita'})
+router.route('/materiels/add').post((req, res)=>{
+    let materiel = new Materiel(req.body);
+    materiel.save()
+    .then(materiel=>{
+        res.status(200).json({'materiel':'Fanampiana vita'})
     })
     .catch(err=>{
         res.status(400).send('ts nety ilay ajout')
     });
 });
 
-router.route('/issues/update/:id').post((req, res)=>{
-    Issue.findById(req.params.id, (err, issue)=>{
-        if(!issue)
-            return runInNewContext(new Error('tsy azo ilay document'));
+router.route('/materiels/update/:id').post((req, res)=>{
+    Materiel.findById(req.params.id, (err, materiel)=>{
+        if(!materiel)
+            return next(new Error('tsy azo ilay document'));
         else
-            issue.title = req.body.title;
-            issue.responsible = req.body.responsible;
-            issue.descripion = req.body.descripion;
-            issue.severity = req.body.severity;
-            issue.status = req.body.status;
+        materiel.nom = req.body.nom;
+        materiel.categorie = req.body.categorie;
+        materiel.model = req.body.model;
+        materiel.marque = req.body.marque;
+        materiel.fournisseur = req.body.fournisseur;
+        materiel.etat = req.body.etat;
+        materiel.prixValeur = req.body.prixValeur;
 
-            issue.save().then(issue=>{
+        materiel.save().then(materiel=>{
                 res.json('Update dia vita');
             }).catch(err=>{
                 res.status(400).send('Update ts nety');
-            });
+            });   
     });
 });
 
 
-router.route('/issues/delete/:id').get((req, res)=>{
-    Issue.findByIdAndRemove({_id: req.params.id},(err, issue)=>{
+
+router.route('/materiels/delete/:id').get((req, res)=>{
+    Materiel.findByIdAndRemove({_id: req.params.id},(err, materiel)=>{
         if (err)
             res.json(err);
         else    
@@ -84,4 +90,4 @@ router.route('/issues/delete/:id').get((req, res)=>{
 //default route
 app.use('/',router);
 //listing port
-app.listen(4000,()=>console.log('Express mande amin ny port 4000')); cd 
+app.listen(4000,()=>console.log('Express mande amin ny port 4000')); 
