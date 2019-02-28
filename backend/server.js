@@ -8,7 +8,7 @@ const express       = require("express");
 const cors          = require("cors");
 const bodyParser    = require("body-parser");
 const mongoose      = require("mongoose");
-const Materiel         = require("./models/Materiel");
+var Materiel      = require("./models/Materiel");
 
 const app = express();
 const router = express.Router();
@@ -26,11 +26,11 @@ connection.once('open', () =>{
 });
 
 router.route('/materiels').get((req, res)=>{
-    Materiel.find((err, materiel)=> {
+    Materiel.find((err, materiels)=> {
         if(err)
             console.log(err);
         else
-            res.json(materiel);
+            res.json(materiels);
     });
 
 });
@@ -47,12 +47,12 @@ router.route('/materiels/:id').get((req, res)=>{
 router.route('/materiels/add').post((req, res)=>{
     let materiel = new Materiel(req.body);
     materiel.save()
-    .then(materiel=>{
-        res.status(200).json({'materiel':'Fanampiana vita'})
-    })
-    .catch(err=>{
-        res.status(400).send('ts nety ilay ajout')
-    });
+        .then(materiel=>{
+            res.status(200).json({'materiel':'Fanampiana vita'});
+      })
+        .catch(err=>{
+            res.status(400).send('ts nety ilay ajout');
+        });
 });
 
 router.route('/materiels/update/:id').post((req, res)=>{

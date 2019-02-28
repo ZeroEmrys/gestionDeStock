@@ -22,12 +22,11 @@ let MaterielSchema = new Schema({
         type: String,
     },
     prixValeur:{
-        type: String,
+        type: Number,
     }
 });
 
-var Materiel = mongoose.model('Materiel',MaterielSchema);
+module.exports = mongoose.model('Materiel',MaterielSchema);
 
-module.exports = Materiel;
 
 //export default mongoose.model('Issue',Issue);
