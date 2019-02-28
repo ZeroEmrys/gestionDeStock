@@ -1,8 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-//ajout router, toolbar
+//adding router, Http
 import {RouterModule, Routes} from '@angular/router';
-import {MatToolbarModule} from '@angular/material';
+import {HttpClientModule} from '@angular/common/http';
+
+//adding component
+import {MatToolbarModule , MatPaginatorModule, MatIconModule, MatInputModule, MatOptionModule, MatSelectModule, MatButtonModule, MatCardModule, MatDividerModule, MatSnackBarModule, MatFormFieldModule, MatTableModule} from '@angular/material';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -33,11 +37,24 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-//activation of routes, matToolbar
+//activation of routes, matModule, httpl
+    HttpClientModule,
     RouterModule.forRoot(routes),
-    MatToolbarModule
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatCardModule,
+    MatDividerModule,
+    MatSnackBarModule,
+    MatIconModule,
+    MatTableModule,
+    ReactiveFormsModule,
+    MatPaginatorModule,
   ],
-//ajout des service dans provider
+//adding service for all component (we do that in providers)
   providers: [MaterielService],
   bootstrap: [AppComponent]
 })

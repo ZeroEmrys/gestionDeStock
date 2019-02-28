@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+//inject materiel service
+import { MaterielService } from '../../materiel.service';
 
 @Component({
   selector: 'app-edit',
@@ -6,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-
-  constructor() { }
+//injection of service inside constructor
+  constructor(private materielService: MaterielService) { }
 
   ngOnInit() {
   }
