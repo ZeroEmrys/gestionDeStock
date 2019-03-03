@@ -12,9 +12,11 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ListComponent } from './components/list/list.component';
-import { CreateComponent } from './components/create/create.component';
-import { EditComponent } from './components/edit/edit.component';
+
+
+import { ListComponent } from './components/Materiels/list/list.component';
+import { CreateComponent } from './components/Materiels/create/create.component';
+import { EditComponent } from './components/Materiels/edit/edit.component';
 
 import { MaterielService } from './materiel.service';
 

@@ -3,13 +3,13 @@ import { Component, OnInit, ViewChild  } from '@angular/core';
 //injection of router
 import { Router } from '@angular/router';
 //importation of dataSource
-import { MatTableDataSource,  Sort, MatPaginator } from '@angular/material';
+import { MatTableDataSource,  MatSort, MatPaginator } from '@angular/material';
 
 
 //inject Materiel
-import { Materiel } from '../../materiel.module';
+import { IMateriel } from '../../../interface_materiel.module';
 //inject materiel service
-import { MaterielService } from '../../materiel.service';
+import { MaterielService } from '../../../materiel.service';
 import { DataSource } from '@angular/cdk/table';
 
 
@@ -20,33 +20,55 @@ import { DataSource } from '@angular/cdk/table';
 })
 export class ListComponent implements OnInit {
 //initialisation of the class
-  materiels : Materiel[];
-  displayedColumns = ['nom', 'categorie', 'model', 'marque', 'fournisseur', 'etat', 'prixValeur','actions'];
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  dataSource = new MatTableDataSource<Materiel>();
+  materiels =  [];
+  materielsS =  [];
 
-  ;
+  displayedColumns = ['nom', 'categorie', 'model', 'marque', 'fournisseur', 'etat', 'prixValeur','actions'];
+  dataSource = new MatTableDataSource(this.materiels);
+
 //ajour pagination et sort
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+
+
 
 //injection of service inside constructor
   constructor(private materielService: MaterielService, private router: Router) { }
 
   ngOnInit() {
-    this.fetchMateriels();
-//    this.materielService.getMateriels().subscribe((materiels)=>{
-//      console.log(materiels);
-//    });
-  this.dataSource.paginator = this.paginator;
+
+    this.fetchingMaterielsFromDataSource();
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
 
   }
+
+
+
   fetchMateriels(){
     this.materielService
       .getMateriels()
-      .subscribe((data: Materiel[])=>{
+      .subscribe((data: IMateriel[])=>{
         this.materiels = data;
         console.log('Donné alaina...');
         console.log(this.materiels);
-      })
+      });
+
+  }
+
+  fetchingMaterielsFromDataSource(){
+    this.materielService
+      .getMateriels()
+      .subscribe((data:IMateriel[]) => {
+        this.dataSource.data = data}
+        );
+  }
+
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim(); // Remove whitespace
+    filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
+    this.dataSource.filter = filterValue;
   }
 
 //edit for button
@@ -56,12 +78,8 @@ export class ListComponent implements OnInit {
 //delete for button
   deleteMateriel(id){
     this.materielService.deleteMateriel(id).subscribe(()=>{
-      this.fetchMateriels();
+      this.fetchingMaterielsFromDataSource();
     });
   }
-
-
-
-//sort
 
 }

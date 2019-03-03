@@ -1,5 +1,5 @@
-//defining for front end project
-export interface Materiel{
+//defining for front end project (interface for casting)
+export interface IMateriel{
   id: String;
   nom: String;
   categorie: String;

@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Materiel } from './materiel.module';
+import { Observable,  BehaviorSubject} from 'rxjs';
+import { IMateriel } from './interface_materiel.module';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +10,14 @@ import { Materiel } from './materiel.module';
 export class MaterielService {
 
 //url for the node server
-  uri = 'http://localhost:4000';;
+  uri = 'http://localhost:4000';
 
 //private http for the service
   constructor(private http: HttpClient) { }
 
-// getting services - materiels
-  getMateriels(){
-    return this.http.get(`${this.uri}/materiels`);
+// getting services - materiels (casting observable into an array)
+  getMateriels():Observable<IMateriel[]>{
+    return this.http.get<IMateriel[]>(`${this.uri}/materiels`);
   }
 //getting service materiels by ID
   getMaterielById(id){
@@ -52,11 +53,5 @@ export class MaterielService {
 //delete service
   deleteMateriel(id){
     return this.http.get(`${this.uri}/materiels/delete/${id}`);
-  };
-  /*****************/
-
-
-  getAllMateriels():Observable<Materiel[]>{
-    return  this.http.get<Materiel[]>(this.uri);
-  };
+  }
 }
