@@ -7,7 +7,9 @@ let MaterielSchema = new Schema({
         type: String
     },
     categorie:{
-        type: String
+        type: Schema.Types.ObjectId,
+        ref: 'Categorie'
+
     },
     model:{
         type: String
@@ -23,10 +25,13 @@ let MaterielSchema = new Schema({
     },
     prixValeur:{
         type: Number,
+    },
+    dateObtention:{
+        type: Date,
+        default: Date.now
     }
 });
 
 module.exports = mongoose.model('Materiel',MaterielSchema);
-
 
 //export default mongoose.model('Issue',Issue);

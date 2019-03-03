@@ -9,6 +9,7 @@ const cors          = require("cors");
 const bodyParser    = require("body-parser");
 const mongoose      = require("mongoose");
 var Materiel      = require("./models/Materiel");
+var Categorie      = require("./models/Categorie");
 
 const app = express();
 const router = express.Router();
@@ -85,6 +86,17 @@ router.route('/materiels/delete/:id').get((req, res)=>{
         else    
             res.json('Delete nety');
     });
+});
+
+//Categorie
+router.route('/categorie').get((req, res)=>{
+    Categorie.find((err, categories)=> {
+        if(err)
+            console.log("very e");
+        else
+            res.json(categories);
+    });
+
 });
 
 //default route
