@@ -20,12 +20,12 @@ import { EditComponent } from './components/Materiels/edit/edit.component';
 
 import { MaterielService } from './materiel.service';
 
-//configuration of routes
+ //configuration of routes
 const routes: Routes = [
   {path: 'create', component: CreateComponent},
   {path: 'edit/:id', component: EditComponent},
   {path: 'list',component: ListComponent},
-  {path: '',redirectTo:'list',pathMatch: 'full'}
+  {path: '', redirectTo: 'list', pathMatch: 'full'}
 ];
 
 @NgModule({
@@ -39,7 +39,7 @@ const routes: Routes = [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-//activation of routes, matModule, httpl
+ //activation of routes, matModule, httpl
     HttpClientModule,
     RouterModule.forRoot(routes),
     MatToolbarModule,
@@ -56,7 +56,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatPaginatorModule,
   ],
-//adding service for all component (we do that in providers)
+ //adding service for all component (we do that in providers)
   providers: [MaterielService],
   bootstrap: [AppComponent]
 })
