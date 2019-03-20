@@ -1,12 +1,14 @@
 import { MaterielDTO } from './dto/materiel.dto';
 import { MATERIEL_MODEL_PROVIDER } from './../constants';
-import { Injectable, Inject } from '@nestjs/common';
+import { Injectable, Inject} from '@nestjs/common';
 import { Model } from 'mongoose';
 import { MaterielInterface } from './interfaces/materiel.interface';
 
 @Injectable()
 export class MaterielService {
-    constructor(@Inject(MATERIEL_MODEL_PROVIDER) private readonly materielModel: Model<MaterielInterface>){}
+    constructor(@Inject(MATERIEL_MODEL_PROVIDER) private readonly materielModel: Model<MaterielInterface>){
+        
+    }
 // ajout d un materiel
     async ajoutMateriel(materielDTO: MaterielDTO): Promise<MaterielInterface>{
         const materiels = await new this.materielModel(materielDTO);

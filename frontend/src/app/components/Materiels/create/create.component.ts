@@ -25,11 +25,11 @@ constructor(private materielService: MaterielService, private formbuilder:FormBu
   });
 }
 
-addMateriel(nom, categorie, model, marque, fournisseur, etat, priValeur){
-  this.materielService.addMateriel(nom, categorie, model, marque, fournisseur, etat, priValeur).subscribe(()=>{
-    this.router.navigate(['/list']);
-  });
-};
+// addMateriel(nom, categorie, model, marque, fournisseur, etat, priValeur){
+//   this.materielService.addMateriel(nom, categorie, model, marque, fournisseur, etat, priValeur).subscribe(()=>{
+//     this.router.navigate(['/list']);
+//   });
+// };
 
   ngOnInit() {
   }

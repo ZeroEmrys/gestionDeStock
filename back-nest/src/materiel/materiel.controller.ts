@@ -2,24 +2,25 @@ import { MaterielService } from './materiel.service';
 import { MaterielDTO } from './dto/materiel.dto';
 import { Controller, Post, Body, Res, HttpStatus, Get, Param, Put, Query, Delete } from '@nestjs/common';
 
-@Controller('materiel')
+@Controller('materiels')
 export class MaterielController{
     constructor(private materielService: MaterielService){}
 
 // constructeur pour l'ajout de materiel en relation avec le service
     @Post()
-     ajoutMateriel(@Res() res, @Body() materielDTOFromBody: MaterielDTO){
-        const addedMat =  this.materielService.ajoutMateriel(materielDTOFromBody);
-        return res.status(HttpStatus.OK).json({
-            message: 'materiel ajouter',
-            materiels: addedMat,
-        });
+     async ajoutMateriel(@Body() materielDTOFromBody: MaterielDTO){
+        const addedMat =  await this.materielService.ajoutMateriel(materielDTOFromBody);
+        // return res.status(HttpStatus.OK).json({
+        //     message: 'materiel ajouter',
+        //     materiels: addedMat,
+        // });
+        return addedMat;
     }
 
 // constructeur pour l'affichage de materiel en relation avec le service
     @Get()
     async affichageMateriel(){
-        const afficherMat = this.materielService.aficherMateriel();
+        const afficherMat = await this.materielService.aficherMateriel();
         return afficherMat;
     }
 

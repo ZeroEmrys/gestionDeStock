@@ -36,12 +36,7 @@ export class ListComponent implements OnInit {
   constructor(private materielService: MaterielService, private router: Router) { }
 
   ngOnInit() {
-
-    this.fetchingMaterielsFromDataSource();
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-
+    this.getMateriels();
   }
 
 
@@ -57,11 +52,16 @@ export class ListComponent implements OnInit {
 
   }
 
-  fetchingMaterielsFromDataSource(){
+  getMateriels(){
     this.materielService
       .getMateriels()
       .subscribe((data:IMateriel[]) => {
-        this.dataSource.data = data}
+        this.dataSource.data = data
+        this.materiels = data;
+
+        console.log('Donné alaina...');
+        console.log(this.materiels);
+      }
         );
   }
 
@@ -72,14 +72,14 @@ export class ListComponent implements OnInit {
   }
 
 //edit for button
-  editMateriel(id){
-    this.router.navigate([`/edit/${id}`]);
-  }
+  // editMateriel(id){
+  //   this.router.navigate([`/edit/${id}`]);
+  // }
 //delete for button
-  deleteMateriel(id){
-    this.materielService.deleteMateriel(id).subscribe(()=>{
-      this.fetchingMaterielsFromDataSource();
-    });
-  }
+  // deleteMateriel(id){
+  //   this.materielService.deleteMateriel(id).subscribe(()=>{
+  //     this.fetchingMaterielsFromDataSource();
+  //   });
+  // }
 
 }
