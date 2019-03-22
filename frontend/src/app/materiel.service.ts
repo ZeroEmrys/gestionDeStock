@@ -8,7 +8,6 @@ const endpoint = 'http://localhost:3000/materiels/';
 const httpOptions = {
   headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      'Access-Control-Allow-Origin': endpoint,
     }),
   }
   
@@ -20,11 +19,7 @@ export class MaterielService {
 //url for the node server
 
 //private http for the service
-  constructor(private http: HttpClient) { 
-    console.log("***************");
-    
-
-  }
+  constructor(private http: HttpClient) {}
 
 // getting services - materiels (casting observable into an array)
   getMateriels():Observable<IMateriel[]>{

@@ -62,7 +62,7 @@ export class ListComponent implements OnInit {
         console.log('Donné alaina...');
         console.log(this.materiels);
       }
-        );
+    );
   }
 
   applyFilter(filterValue: string) {
