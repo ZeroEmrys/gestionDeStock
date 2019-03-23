@@ -11,6 +11,7 @@ import { IMateriel } from '../../../interface_materiel.module';
 //inject materiel service
 import { MaterielService } from '../../../materiel.service';
 import { DataSource } from '@angular/cdk/table';
+import { CategorieService } from 'src/app/categorie.service';
 
 
 @Component({
@@ -21,7 +22,9 @@ import { DataSource } from '@angular/cdk/table';
 export class ListComponent implements OnInit {
 //initialisation of the class
   materiels =  [];
-  materielsS =  [];
+  materielsS :  IMateriel[]=[];
+  
+  categorieNom: string;
 
   displayedColumns = ['nom', 'categorie', 'model', 'marque', 'fournisseur', 'etat', 'prixValeur','actions'];
   dataSource = new MatTableDataSource(this.materiels);
@@ -33,10 +36,14 @@ export class ListComponent implements OnInit {
 
 
 //injection of service inside constructor
-  constructor(private materielService: MaterielService, private router: Router) { }
+  constructor(private materielService: MaterielService,
+    private categorieService: CategorieService,
+    private router: Router) { 
+
+    }
 
   ngOnInit() {
-    this.getMateriels();
+    this.getAllMateriels();
   }
 
 
@@ -52,17 +59,23 @@ export class ListComponent implements OnInit {
 
   }
 
-  getMateriels(){
+  getAllMateriels(){
     this.materielService
       .getMateriels()
-      .subscribe((data:IMateriel[]) => {
+      .subscribe(async (data:IMateriel[]) => {
         this.dataSource.data = data
-        this.materiels = data;
-
+        this.materielsS = await data;
+        console.log(data);
+        for (let index = 0; index < data.length; index++) {          
+          await this.categorieService.getCbyId(data[index].categorie).subscribe((res)=>{
+            this.materielsS[index].categorie = res.nom;
+          });
+        }
         console.log('Donné alaina...');
         console.log(this.materiels);
       }
     );
+  
   }
 
   applyFilter(filterValue: string) {
@@ -71,15 +84,15 @@ export class ListComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-//edit for button
-  // editMateriel(id){
-  //   this.router.navigate([`/edit/${id}`]);
-  // }
-//delete for button
-  // deleteMateriel(id){
-  //   this.materielService.deleteMateriel(id).subscribe(()=>{
-  //     this.fetchingMaterielsFromDataSource();
-  //   });
-  // }
+// edit for button
+  editMateriel(id){
+     this.router.navigate([`/edit/${id}`]);
+  }
+// delete for button
+  deleteMateriel(id){
+    this.materielService.deleteMateriel(id).subscribe(()=>{
+      this.getAllMateriels();
+    });
+  }
 
 }

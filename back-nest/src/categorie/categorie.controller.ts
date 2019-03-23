@@ -22,6 +22,12 @@ export class CategorieController {
         return afficherC;
     }
 
+    @Get(':id')
+    async affichageCategorieById(@Param() p){
+        const afficherC = await this.categorieService.afficherCategoriebyId(p.id);
+        return afficherC;
+    }
+
     @Delete(':id')
     async effacerMateriel(@Param() idASupr, @Res() response){
         const suprMat = this.categorieService.supprimerMonCategorie(idASupr.id);

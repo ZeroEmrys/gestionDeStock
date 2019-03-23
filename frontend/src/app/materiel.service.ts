@@ -25,39 +25,39 @@ export class MaterielService {
   getMateriels():Observable<IMateriel[]>{
     return this.http.get<IMateriel[]>(endpoint, httpOptions);
    }
-// //getting service materiels by ID
-//   getMaterielById(id){
-//     // return this.http.get(`${this.uri}/materiels/${id}`);
-//   }
-// //adding service
-//   addMateriel(nom, categorie, model, marque, fournisseur, etat, prixValeur){
-//     const materiel = {
-//       nom : nom,
-//       categorie : categorie,
-//       model : model,
-//       marque : marque,
-//       fournisseur : fournisseur,
-//       etat : etat,
-//       prixValeur : prixValeur
-//     };
-//     // return this.http.post(`${this.uri}/materiels/add`, materiel);
-//   };
-// //update servce
-//   updateMateriel(id, nom, categorie, model, marque, fournisseur, etat, prixValeur){
+//getting service materiels by ID
+  getMaterielById(id){
+    // return this.http.get(`${this.uri}/materiels/${id}`);
+  }
+//adding service
+  addMateriel(nom, categorie, model, marque, fournisseur, etat, prixValeur){
+    const materiel = {
+      nom : nom,
+      categorie : categorie,
+      model : model,
+      marque : marque,
+      fournisseur : fournisseur,
+      etat : etat,
+      prixValeur : prixValeur
+    };
+     return this.http.post(endpoint, materiel);
+  };
+//update servce
+  updateMateriel(id, nom, categorie, model, marque, fournisseur, etat, prixValeur){
 
-//     const materiel = {
-//       nom : nom,
-//       categorie : categorie,
-//       model : model,
-//       marque : marque,
-//       fournisseur : fournisseur,
-//       etat : etat,
-//       prixValeur : prixValeur
-//     };
-//     // return this.http.post(`${this.uri}/materiels/update/${id}`, materiel);
-//   };
-// //delete service
-//   deleteMateriel(id){
-//     // return this.http.get(`${this.uri}/materiels/delete/${id}`);
-//   }
+    const materiel = {
+      nom : nom,
+      categorie : categorie,
+      model : model,
+      marque : marque,
+      fournisseur : fournisseur,
+      etat : etat,
+      prixValeur : prixValeur
+    };
+     return this.http.post(`${endpoint}${id}`, materiel);
+  };
+//delete service
+  deleteMateriel(id){
+    return this.http.delete(`${endpoint+id}`);
+  }
 }

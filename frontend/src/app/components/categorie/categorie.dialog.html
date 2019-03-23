@@ -1,0 +1,6 @@
+<p>Ajouter categorie</p>
+<mat-form-field>
+    <input matInput [(ngModel)]="nomCategorie" >
+</mat-form-field>
+<button mat-button  (click)="onNoClick()"> Anuler </button>
+<button mat-button [mat-dialog-close]="nomCategorie" cdkFocusInitial> OK</button>

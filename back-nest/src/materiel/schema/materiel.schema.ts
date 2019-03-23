@@ -1,4 +1,5 @@
 import * as mongoose from 'mongoose';
+import { ObjectID } from 'bson';
 
 export const MaterielSchema = new mongoose.Schema({
     nom: {
@@ -6,7 +7,7 @@ export const MaterielSchema = new mongoose.Schema({
         required : true,
         },
     categorie: {
-        type : String,
+        type : ObjectID,
         //      required: true,
         },
     type: {

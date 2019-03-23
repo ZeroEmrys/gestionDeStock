@@ -10,6 +10,6 @@ import { DatabaseModule } from 'src/database/database.module';
   providers: [
     CategorieService, 
     ...categorieProviders],
-  
+ 
 })
 export class CategorieModule {}

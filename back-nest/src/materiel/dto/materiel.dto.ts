@@ -1,6 +1,8 @@
+import { ObjectID } from "bson";
+
 export class MaterielDTO{
     readonly nom: string;
-    readonly categorie: string;
+    readonly categorie: ObjectID;
     readonly type: string;
     readonly marque: string;
     readonly fournisseur: string;

@@ -9,12 +9,12 @@
   </div>
   <mat-card>
     <button mat-raised-button color="primary" [routerLink]="['/create']">
-      Ajout
+      Ajouter matériel
     </button>
     <br><br>
     <mat-divider></mat-divider>
     <br>
-    <table mat-table  [dataSource]="materiels" matSort class="mat-elevation-z8">
+    <table mat-table  [dataSource]="dataSource" matSort class="mat-elevation-z8">
       <ng-container matColumnDef="nom" >
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
         <td mat-cell *matCellDef="let element">{{element.nom}}</td>
@@ -64,7 +64,6 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
 
 
   </mat-card>

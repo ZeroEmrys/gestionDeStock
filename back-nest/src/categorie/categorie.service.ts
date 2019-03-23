@@ -21,6 +21,11 @@ export class CategorieService {
         return c;
     }
 
+    async afficherCategoriebyId(id): Promise<CategorieInterface>{
+        const c = await this.categorieModel.findById(id);
+        return c;
+    }
+
 // // affichage d'un materiel
 //     async afficherUnMateriel(idMateriel): Promise<MaterielInterface>{
 //         const materiel = await this.materielModel.findById(idMateriel);
