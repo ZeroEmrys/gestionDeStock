@@ -47,6 +47,7 @@ addMateriel(nom, categorie, model, marque, fournisseur, etat, priValeur){
 getCategorieById(id){
   this.categorieService.getCbyId(id);
 }
+
 getCategorie(){
   this.categorieService.getAllCategories().subscribe((resultat)=>{
     this.categories = resultat;

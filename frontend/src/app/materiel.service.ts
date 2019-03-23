@@ -38,7 +38,7 @@ export class MaterielService {
       marque : marque,
       fournisseur : fournisseur,
       etat : etat,
-      prixValeur : prixValeur
+      prix : prixValeur
     };
      return this.http.post(endpoint, materiel);
   };

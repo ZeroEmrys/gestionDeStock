@@ -66,9 +66,11 @@ export class ListComponent implements OnInit {
         this.dataSource.data = data
         this.materielsS = await data;
         console.log(data);
+// on prend les nom des categories
         for (let index = 0; index < data.length; index++) {          
           await this.categorieService.getCbyId(data[index].categorie).subscribe((res)=>{
             this.materielsS[index].categorie = res.nom;
+            console.log(data[index].priValeur);
           });
         }
         console.log('Donné alaina...');
