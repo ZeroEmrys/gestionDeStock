@@ -3,11 +3,13 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 
 import {Router} from '@angular/router';
 //inject materiel service
-import { MaterielService } from '../../../materiel.service';
-import { CategorieService } from 'src/app/categorie.service';
-import { ICategorie } from 'src/app/interface_categorie';
 import { DialogCategorie } from '../../categorie/categorie.component';
 import { MatDialog } from '@angular/material';
+import { ICategorie } from 'src/app/interfaces/interface_categorie';
+import { MaterielService } from 'src/app/services/materiel.service';
+import { CategorieService } from 'src/app/services/categorie.service';
+import { TypeDialogComponent } from '../../type-dialog/type-dialog.component';
+import { TypeDialogService } from 'src/app/services/type-dialog.service';
 
 @Component({
   selector: 'app-create',
@@ -17,6 +19,7 @@ import { MatDialog } from '@angular/material';
 export class CreateComponent implements OnInit {
   createForm : FormGroup;
   categories = [];
+  types = [];
   popCategorie: ICategorie;
   nomCategorie: string;
   prenomCategorie: string;
@@ -24,11 +27,13 @@ export class CreateComponent implements OnInit {
 //injection of service inside constructor
 constructor(private materielService: MaterielService,
   private categorieService: CategorieService, 
+  private typeService: TypeDialogService, 
   public dialog: MatDialog,
   private formbuilder:FormBuilder, private router:Router) {
   this.createForm = this.formbuilder.group({
     nom: ['', Validators.required],
     categorie:'',
+    type:'',
     model: '',
     marque:'',
     fournisseur:'',
@@ -37,10 +42,11 @@ constructor(private materielService: MaterielService,
   });
 }
 
-addMateriel(nom, categorie, model, marque, fournisseur, etat, priValeur){
+addMateriel(nom, categorie, type, model, marque, fournisseur, etat, priValeur){
   console.log('valeur du id ', categorie);
-  this.materielService.addMateriel(nom, categorie, model, marque, fournisseur, etat, priValeur).subscribe(()=>{
+  this.materielService.addMateriel(nom, categorie, type, model, marque, fournisseur, etat, priValeur).subscribe(()=>{
     this.router.navigate(['/list']);
+    console.log("*** ", type);
   });
 }
 
@@ -55,11 +61,23 @@ getCategorie(){
   });
 }
 
-ngOnInit() {
-  this.getCategorie();
+getTypeById(id){
+  this.typeService.getTbyId(id);
 }
 
-openDialog(): void{
+getTypes(){
+  this.typeService.getAllTypes().subscribe((resultat)=>{
+    this.types = resultat;
+    console.log("categorie *** ", this.types);
+  });
+}
+
+ngOnInit() {
+  this.getCategorie();
+  this.getTypes();
+}
+
+openDialogCategorie(): void{
   const dialogRef = this.dialog.open(DialogCategorie, {
     width: '300px',
     data: {nomC: this.nomCategorie}
@@ -74,4 +92,19 @@ openDialog(): void{
     });
   });
   }
+
+  openDialogType(): void{
+    const dialogRef = this.dialog.open(TypeDialogComponent, {
+      width: '300px',
+      data: {}
+    });
+    dialogRef.afterClosed().subscribe(async (result) => {
+      //this.popCategorie.nom = result;
+    console.log("closed", result);
+  
+      this.typeService.addType(result).subscribe((res)=>{
+        this.getTypes();
+      });
+    });
+    }
 }

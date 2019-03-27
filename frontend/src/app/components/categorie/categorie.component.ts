@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { CategorieService } from 'src/app/categorie.service';
 import { Router } from '@angular/router';
-import { ICategorie } from 'src/app/interface_categorie';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material';
+import { ICategorie } from 'src/app/interfaces/interface_categorie';
+import { CategorieService } from 'src/app/services/categorie.service';
 
 @Component({
   selector: 'app-categorie',

@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { ICategorie } from './interface_categorie';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { IType } from '../interfaces/interface_type.module';
 
 
 
-const endpoint = 'http://localhost:3000/categorie/';
+
+const endpoint = 'http://localhost:3000/type/';
 const httpOptions = {
   headers: new HttpHeaders({
       'Content-Type':  'application/json',
@@ -16,26 +17,26 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class CategorieService {
+export class TypeDialogService {
+
 
   constructor(private http: HttpClient) { }
 
-  getAllCategories():Observable<ICategorie[]>{
-    return this.http.get<ICategorie[]>(endpoint, httpOptions);
+  getAllTypes():Observable<IType[]>{
+    return this.http.get<IType[]>(endpoint, httpOptions);
    }
 
-  getCbyId(id): Observable<ICategorie>{
-    return this.http.get<ICategorie>(endpoint+id, httpOptions);
+  getTbyId(id): Observable<IType>{
+    return this.http.get<IType>(endpoint+id, httpOptions);
   }
 
-  addCategorie(nom){
+  addType(nom){
   const c = {
     nom : nom,
   };
     return this.http.post(endpoint, c);
 }
 
-  deleteCategorie(id){
+  deleteType(id){
     return this.http.delete(`${endpoint+id}`);
-  }
-}
+  }}

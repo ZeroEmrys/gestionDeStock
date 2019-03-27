@@ -17,9 +17,18 @@
         <mat-form-field class="field-full-width">
             <mat-select  matInput placeholder="Catégorie matériel" formControlName="categorie" #categorie>
               <mat-option *ngFor="let categorie of categories" value="{{categorie._id}}">
-                {{categorie.nom}} {{categorie._id}}
+                {{categorie.nom}}
               </mat-option>
-              <button mat-raised-button (click)="openDialog()">Ajouter catégorie</button>
+              <mat-option (click)="openDialogCategorie()">Ajouter catégorie</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="field-full-width">
+            <mat-select  matInput placeholder="Type matériel" formControlName="type" #type>
+              <mat-option *ngFor="let type of types" value="{{type._id}}">
+                {{type.nom}}
+              </mat-option>
+              <mat-option (click)="openDialogType()">Ajouter type</mat-option>
             </mat-select>
           </mat-form-field>
         
@@ -56,7 +65,7 @@
       <!-- <mat-divider></mat-divider> -->
       <br>
           <button mat-raised-button color="accent" [routerLink]="['/list']">Revenir dans la list</button>
-          <button type="submit" (click)="addMateriel(nom.value, categorie.value, model.value, marque.value,fournisseur.value, etat.value, prixValeur.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary">  Ajouter </button>
+          <button type="submit" (click)="addMateriel(nom.value, categorie.value, type.value, model.value, marque.value,fournisseur.value, etat.value, prixValeur.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary">  Ajouter </button>
         </mat-card>
  
         </form>

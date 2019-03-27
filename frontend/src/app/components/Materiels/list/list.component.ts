@@ -4,14 +4,12 @@ import { Component, OnInit, ViewChild  } from '@angular/core';
 import { Router } from '@angular/router';
 //importation of dataSource
 import { MatTableDataSource,  MatSort, MatPaginator } from '@angular/material';
+import { IMateriel } from 'src/app/interfaces/interface_materiel.module';
+import { MaterielService } from 'src/app/services/materiel.service';
+import { CategorieService } from 'src/app/services/categorie.service';
 
 
 //inject Materiel
-import { IMateriel } from '../../../interface_materiel.module';
-//inject materiel service
-import { MaterielService } from '../../../materiel.service';
-import { DataSource } from '@angular/cdk/table';
-import { CategorieService } from 'src/app/categorie.service';
 
 
 @Component({

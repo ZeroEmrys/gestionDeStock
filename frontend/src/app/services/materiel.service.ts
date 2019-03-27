@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable,  BehaviorSubject} from 'rxjs';
-import { IMateriel } from './interface_materiel.module';
+import { IMateriel } from '../interfaces/interface_materiel.module';
 
 
 const endpoint = 'http://localhost:3000/materiels/';
@@ -30,10 +30,11 @@ export class MaterielService {
     // return this.http.get(`${this.uri}/materiels/${id}`);
   }
 //adding service
-  addMateriel(nom, categorie, model, marque, fournisseur, etat, prixValeur){
+  addMateriel(nom, categorie, type,  model, marque, fournisseur, etat, prixValeur){
     const materiel = {
       nom : nom,
       categorie : categorie,
+      type: type,
       model : model,
       marque : marque,
       fournisseur : fournisseur,

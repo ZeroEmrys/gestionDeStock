@@ -18,9 +18,10 @@ import { ListComponent } from './components/Materiels/list/list.component';
 import { CreateComponent } from './components/Materiels/create/create.component';
 import { EditComponent } from './components/Materiels/edit/edit.component';
 
-import { MaterielService } from './materiel.service';
 import { CategorieComponent, DialogCategorie } from './components/categorie/categorie.component';
-import { CategorieService } from './categorie.service';
+import { MaterielService } from './services/materiel.service';
+import { CategorieService } from './services/categorie.service';
+import { TypeDialogComponent } from './components/type-dialog/type-dialog.component';
 
  //configuration of routes
 const routes: Routes = [
@@ -38,7 +39,8 @@ const routes: Routes = [
     CreateComponent,
     EditComponent,
     CategorieComponent,
-    DialogCategorie
+    DialogCategorie,
+    TypeDialogComponent
 
   ],
   imports: [
@@ -67,7 +69,8 @@ const routes: Routes = [
     MatPaginatorModule,
   ],
   entryComponents: [
-    DialogCategorie
+    DialogCategorie,
+    TypeDialogComponent
   ],
  //adding service for all component (we do that in providers)
   providers: [MaterielService, CategorieService],

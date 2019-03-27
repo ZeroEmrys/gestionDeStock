@@ -11,7 +11,7 @@ export const MaterielSchema = new mongoose.Schema({
         //      required: true,
         },
     type: {
-        type : String,
+        type : ObjectID,
         //      required: true,
         },
     marque: {
