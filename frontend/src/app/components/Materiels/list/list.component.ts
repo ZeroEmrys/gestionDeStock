@@ -7,6 +7,7 @@ import { MatTableDataSource,  MatSort, MatPaginator } from '@angular/material';
 import { IMateriel } from 'src/app/interfaces/interface_materiel.module';
 import { MaterielService } from 'src/app/services/materiel.service';
 import { CategorieService } from 'src/app/services/categorie.service';
+import { TypeDialogService } from 'src/app/services/type-dialog.service';
 
 
 //inject Materiel
@@ -21,10 +22,10 @@ export class ListComponent implements OnInit {
 //initialisation of the class
   materiels =  [];
   materielsS :  IMateriel[]=[];
-  
+
   categorieNom: string;
 
-  displayedColumns = ['nom', 'categorie', 'model', 'marque', 'fournisseur', 'etat', 'prixValeur','actions'];
+  displayedColumns = ['nom', 'categorie', 'type', 'model', 'marque', 'fournisseur', 'etat', 'prixValeur','actions'];
   dataSource = new MatTableDataSource(this.materiels);
 
 //ajour pagination et sort
@@ -36,7 +37,8 @@ export class ListComponent implements OnInit {
 //injection of service inside constructor
   constructor(private materielService: MaterielService,
     private categorieService: CategorieService,
-    private router: Router) { 
+    private typeService: TypeDialogService,
+    private router: Router) {
 
     }
 
@@ -65,17 +67,24 @@ export class ListComponent implements OnInit {
         this.materielsS = await data;
         console.log(data);
 // on prend les nom des categories
-        for (let index = 0; index < data.length; index++) {          
+        for (let index = 0; index < data.length; index++) {
           await this.categorieService.getCbyId(data[index].categorie).subscribe((res)=>{
             this.materielsS[index].categorie = res.nom;
-            console.log(data[index].priValeur);
+         //   console.log(data[index].priValeur);
+          });
+        }
+
+        for (let index = 0; index < data.length; index++) {
+          await this.typeService.getTbyId(data[index].type).subscribe((res)=>{
+            this.materielsS[index].type = res.nom;
+         //   console.log(data[index].priValeur);
           });
         }
         console.log('Donné alaina...');
         console.log(this.materiels);
       }
     );
-  
+
   }
 
   applyFilter(filterValue: string) {

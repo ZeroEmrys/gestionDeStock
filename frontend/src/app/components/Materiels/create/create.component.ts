@@ -26,8 +26,8 @@ export class CreateComponent implements OnInit {
 
 //injection of service inside constructor
 constructor(private materielService: MaterielService,
-  private categorieService: CategorieService, 
-  private typeService: TypeDialogService, 
+  private categorieService: CategorieService,
+  private typeService: TypeDialogService,
   public dialog: MatDialog,
   private formbuilder:FormBuilder, private router:Router) {
   this.createForm = this.formbuilder.group({
@@ -44,9 +44,10 @@ constructor(private materielService: MaterielService,
 
 addMateriel(nom, categorie, type, model, marque, fournisseur, etat, priValeur){
   console.log('valeur du id ', categorie);
+  console.log("*** ", type);
+
   this.materielService.addMateriel(nom, categorie, type, model, marque, fournisseur, etat, priValeur).subscribe(()=>{
     this.router.navigate(['/list']);
-    console.log("*** ", type);
   });
 }
 
@@ -101,7 +102,7 @@ openDialogCategorie(): void{
     dialogRef.afterClosed().subscribe(async (result) => {
       //this.popCategorie.nom = result;
     console.log("closed", result);
-  
+
       this.typeService.addType(result).subscribe((res)=>{
         this.getTypes();
       });

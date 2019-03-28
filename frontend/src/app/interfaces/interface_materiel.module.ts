@@ -3,6 +3,7 @@ export interface IMateriel{
   id: String;
   nom: String;
   categorie: String;
+  type: String,
   model: String;
   marque: String;
   fournisseur: String;

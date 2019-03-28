@@ -8,7 +8,7 @@
       <br>
       <form [formGroup]="createForm" action="" class="create-form" >
         <mat-card>
-          <div>    
+          <div>
             <mat-form-field class="field-full-width">
                 <input matInput placeholder="Nom matériel" formControlName="nom" #nom>
             </mat-form-field>
@@ -31,7 +31,7 @@
               <mat-option (click)="openDialogType()">Ajouter type</mat-option>
             </mat-select>
           </mat-form-field>
-        
+
 
         <br>
         <mat-form-field class="field-full-width">
@@ -67,7 +67,7 @@
           <button mat-raised-button color="accent" [routerLink]="['/list']">Revenir dans la list</button>
           <button type="submit" (click)="addMateriel(nom.value, categorie.value, type.value, model.value, marque.value,fournisseur.value, etat.value, prixValeur.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary">  Ajouter </button>
         </mat-card>
- 
+
         </form>
 
     </mat-card>

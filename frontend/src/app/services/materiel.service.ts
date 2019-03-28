@@ -10,7 +10,7 @@ const httpOptions = {
       'Content-Type':  'application/json',
     }),
   }
-  
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,11 +30,11 @@ export class MaterielService {
     // return this.http.get(`${this.uri}/materiels/${id}`);
   }
 //adding service
-  addMateriel(nom, categorie, type,  model, marque, fournisseur, etat, prixValeur){
+  addMateriel(nom, categorie, t,  model, marque, fournisseur, etat, prixValeur){
     const materiel = {
       nom : nom,
       categorie : categorie,
-      type: type,
+      type: t,
       model : model,
       marque : marque,
       fournisseur : fournisseur,
