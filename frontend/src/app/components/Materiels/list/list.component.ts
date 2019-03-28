@@ -11,6 +11,7 @@ import { TypeDialogService } from 'src/app/services/type-dialog.service';
 
 
 //inject Materiel
+declare var $: any;
 
 
 @Component({
@@ -44,6 +45,8 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.getAllMateriels();
+    $('#input-search').focus();
+
   }
 
 
@@ -84,7 +87,7 @@ export class ListComponent implements OnInit {
         console.log(this.materiels);
       }
     );
-
+    this.sortBy('nom');
   }
 
   applyFilter(filterValue: string) {
@@ -92,6 +95,20 @@ export class ListComponent implements OnInit {
     filterValue = filterValue.toLowerCase(); // Datasource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
+
+// sort
+sortBy(field: string) {
+  this.materielsS.sort((a: any, b: any) => {
+      if (a[field] > b[field]) {
+          return -1;
+      } else if (a[field] < b[field]) {
+          return 1;
+      } else {
+          return 0;
+      }
+  });
+  this.materielsS = this.materielsS;
+}
 
 // edit for button
   editMateriel(id){

@@ -22,6 +22,7 @@ import { CategorieComponent, DialogCategorie } from './components/categorie/cate
 import { MaterielService } from './services/materiel.service';
 import { CategorieService } from './services/categorie.service';
 import { TypeDialogComponent } from './components/type-dialog/type-dialog.component';
+import { FilterdataPipe } from './filterdata.pipe';
 
  //configuration of routes
 const routes: Routes = [
@@ -40,7 +41,8 @@ const routes: Routes = [
     EditComponent,
     CategorieComponent,
     DialogCategorie,
-    TypeDialogComponent
+    TypeDialogComponent,
+    FilterdataPipe
 
   ],
   imports: [
