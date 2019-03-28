@@ -18,6 +18,9 @@ export const MaterielSchema = new mongoose.Schema({
         type : String,
         //      required: true,
         },
+    myModel: {
+        type: String,
+    },
     fournisseur : {
         type : String,
         //        required : true,

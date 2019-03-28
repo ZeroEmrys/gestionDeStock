@@ -1,29 +1,87 @@
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+<div>
+  <br>
+  <mat-card>
+    <section class="mat-typography">
+      <h2> Edit Matériel {{meMateriel.nom}}</h2>
+    </section>
+    <mat-divider></mat-divider>
+    <br>
+    <form [formGroup]="createForm" action="" class="create-form" *ngIf="meMateriel">
+      <mat-card>
+        <div>
+          <mat-form-field class="field-full-width">
+              <input matInput placeholder="{{meMateriel.nom}}" formControlName="nom" #nom [(ngModel)]="meMateriel.nom">
+          </mat-form-field>
+        </div>
+      <!-- <mat-divider></mat-divider> -->
+      <mat-form-field class="field-full-width">
+          <mat-select  matInput placeholder="Catégorie matériel" formControlName="categorie" [(ngModel)]="meMateriel.categorie" #categorie>
+            <mat-option *ngFor="let categorie of categories" value="{{categorie._id}}">
+              {{categorie.nom}}
+            </mat-option>
+            <mat-option (click)="openDialogCategorie()">Ajouter catégorie</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-  <!-- Position Column -->
-  <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-  </ng-container>
+        <mat-form-field class="field-full-width">
+          <mat-select  matInput placeholder="Type matériel" formControlName="type" #type [(ngModel)]="meMateriel.type">
+            <mat-option *ngFor="let type of types" value="{{type._id}}">
+              {{type.nom}}
+            </mat-option>
+            <mat-option (click)="openDialogType()">Ajouter type</mat-option>
+          </mat-select>
+        </mat-form-field>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-  </ng-container>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="weight">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Weight </th>
-    <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-  </ng-container>
+      <br>
+      <mat-form-field class="field-full-width">
+          <input matInput placeholder="model matériel" formControlName="myModel" #myModel [(ngModel)]="meMateriel.myModel">
+      </mat-form-field>
+      <!-- <mat-divider></mat-divider> -->
+      <br>
+      <mat-form-field class="field-full-width">
+          <input matInput placeholder="Marque matériel" formControlName="marque" #marque [(ngModel)]="meMateriel.marque">
+      </mat-form-field>
+      <!-- <mat-divider></mat-divider> -->
+      <br>
+      <mat-form-field class="field-full-width">
+          <input matInput placeholder="fournisseur / donnateur matériel" formControlName="fournisseur" #fournisseur [(ngModel)]="meMateriel.fournisseur">
+      </mat-form-field>
+      <!-- <mat-divider></mat-divider> -->
+      <br>
+      <mat-form-field class="field-full-width">
+            <mat-select  matInput placeholder="Etat matériel" formControlName="etat" #etat [(ngModel)]="meMateriel.etat">
+              <mat-option value="bon"> bon </mat-option>
+              <mat-option value="Moyen">Moyen</mat-option>
+              <mat-option value="Mauvais">Mauvais</mat-option>
+            </mat-select>
+      </mat-form-field>
+      <!-- <mat-divider></mat-divider> -->
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="symbol">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Symbol </th>
-    <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-  </ng-container>
+      <br>
+        <mat-form-field class="field-full-width">
+            <input matInput placeholder="détenteur"  formControlName="observateur" #observateur  [(ngModel)]="meMateriel.observateur">
+        </mat-form-field>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
+      <br>
+      <mat-form-field class="field-full-width">
+          <input matInput placeholder="Prix valeur matériel (Ar)"  formControlName="prixValeur" #prixValeur digitonly [(ngModel)]="meMateriel.prix">
+      </mat-form-field>
+
+      <br>
+        <mat-form-field class="field-full-width">
+            <textarea matInput placeholder="description"  formControlName="description" #description  [(ngModel)]="meMateriel.description"></textarea>
+        </mat-form-field>
+
+    <!-- <mat-divider></mat-divider> -->
+    <br>
+        <button mat-raised-button color="accent" [routerLink]="['/list']">Revenir dans la list</button>
+        <button type="submit" 
+        (click)="addMateriel(nom.value, categorie.value, type.value, myModel.value, 
+        marque.value,fournisseur.value, etat.value, observateur.value,  prixValeur.value, description.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary">  Ajouter </button>
+      </mat-card>
+
+      </form>
+
+  </mat-card>
+</div>

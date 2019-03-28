@@ -5,6 +5,7 @@ export class MaterielDTO{
     readonly categorie: ObjectID;
     readonly type: ObjectID;
     readonly marque: string;
+    readonly myModel: string;
     readonly fournisseur: string;
     readonly etat: string;
     readonly dateObtention: Date;

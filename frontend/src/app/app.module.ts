@@ -5,7 +5,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {HttpClientModule} from '@angular/common/http';
 
 //adding component
-import {MatToolbarModule , MatPaginatorModule, MatIconModule, MatInputModule, MatOptionModule, MatSelectModule, MatButtonModule, MatCardModule, MatDividerModule, MatSnackBarModule, MatFormFieldModule, MatTableModule, MatDialog, MatDialogModule} from '@angular/material';
+import {MatToolbarModule , MatPaginatorModule, MatIconModule, MatInputModule, MatOptionModule, MatSelectModule, MatButtonModule, MatCardModule, MatDividerModule, MatSnackBarModule, MatFormFieldModule, MatTableModule, MatDialog, MatDialogModule, MatDatepicker, MatDatepickerModule} from '@angular/material';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 
@@ -23,6 +23,9 @@ import { MaterielService } from './services/materiel.service';
 import { CategorieService } from './services/categorie.service';
 import { TypeDialogComponent } from './components/type-dialog/type-dialog.component';
 import { FilterdataPipe } from './filterdata.pipe';
+
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+  
 
  //configuration of routes
 const routes: Routes = [
@@ -64,6 +67,8 @@ const routes: Routes = [
     MatIconModule,
     MatTableModule,
     MatDialogModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
 
 
     FormsModule,

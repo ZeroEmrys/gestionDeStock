@@ -33,7 +33,7 @@
       <ng-container matColumnDef="model">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Model </th>
 
-        <td mat-cell *matCellDef="let element">{{element.model}}</td>
+        <td mat-cell *matCellDef="let element">{{element.myModel}}</td>
       </ng-container>
 
       <ng-container matColumnDef="marque">
@@ -50,6 +50,12 @@
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Etat</th>
         <td mat-cell *matCellDef="let element">{{element.etat}}</td>
       </ng-container>
+
+      <ng-container matColumnDef="detenteur">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Détenteur</th>
+        <td mat-cell *matCellDef="let element">{{element.observateur}}</td>
+      </ng-container>
+
 
       <ng-container matColumnDef="prixValeur">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Pix-valeur (Ar)</th>

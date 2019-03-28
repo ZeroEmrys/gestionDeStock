@@ -31,22 +31,25 @@ constructor(private materielService: MaterielService,
   public dialog: MatDialog,
   private formbuilder:FormBuilder, private router:Router) {
   this.createForm = this.formbuilder.group({
-    nom: ['', Validators.required],
-    categorie:'',
-    type:'',
-    model: '',
-    marque:'',
-    fournisseur:'',
-    etat:'',
-    prixValeur:''
+      nom: ['', Validators.required],
+      categorie:'',
+      type:'',
+      marque:'',
+      myModel: '',
+      fournisseur:'',
+      etat:'',
+      dateObtention: Date,
+      observateur:' ',
+      prixValeur:'',
+      description: '',
   });
 }
 
-addMateriel(nom, categorie, type, model, marque, fournisseur, etat, priValeur){
-  console.log('valeur du id ', categorie);
-  console.log("*** ", type);
+addMateriel(nom, categorie, type, myModel, marque, fournisseur, etat, dateObtention, observateur, prixValeur,  description){
+  console.log('valeur du id ', prixValeur);
+  console.log("*** ", description);
 
-  this.materielService.addMateriel(nom, categorie, type, model, marque, fournisseur, etat, priValeur).subscribe(()=>{
+  this.materielService.addMateriel(nom, categorie, type, myModel, marque, fournisseur, etat, dateObtention, observateur,  prixValeur, description).subscribe(()=>{
     this.router.navigate(['/list']);
   });
 }

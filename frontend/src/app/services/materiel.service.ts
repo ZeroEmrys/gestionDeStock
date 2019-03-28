@@ -27,32 +27,40 @@ export class MaterielService {
    }
 //getting service materiels by ID
   getMaterielById(id){
-    // return this.http.get(`${this.uri}/materiels/${id}`);
+     return this.http.get(endpoint+ id);
   }
 //adding service
-  addMateriel(nom, categorie, t,  model, marque, fournisseur, etat, prixValeur){
+  addMateriel(nom, categorie, t,  model, marque, fournisseur, etat, dateObtention,observateur,  prixValeur, description){
     const materiel = {
       nom : nom,
       categorie : categorie,
       type: t,
-      model : model,
+      myModel : model,
       marque : marque,
       fournisseur : fournisseur,
       etat : etat,
-      prix : prixValeur
+      dateObtention: dateObtention,
+      observateur: observateur,
+      prix : prixValeur,
+      description: description,
+
     };
      return this.http.post(endpoint, materiel);
   };
 //update servce
-  updateMateriel(id, nom, categorie, model, marque, fournisseur, etat, prixValeur){
+  updateMateriel(id, nom, categorie, type, model, marque, fournisseur, etat, dateObtention, observateur, prixValeur, description){
 
     const materiel = {
       nom : nom,
       categorie : categorie,
+      type: type,
       model : model,
       marque : marque,
       fournisseur : fournisseur,
       etat : etat,
+      dateObtention: dateObtention,
+      observateur : observateur, 
+      description: description,
       prixValeur : prixValeur
     };
      return this.http.post(`${endpoint}${id}`, materiel);

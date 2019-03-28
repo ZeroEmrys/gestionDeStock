@@ -6,10 +6,12 @@ export interface MaterielInterface extends Document {
     readonly categorie: ObjectID;
     readonly type: ObjectID;
     readonly marque: string;
+    readonly myModel: string;
     readonly fournisseur: string;
     readonly etat: string;
     readonly dateObtention: Date;
-    readonly prix: number;
     readonly observateur: string;
     readonly description: string;
+    readonly prix: number;
+
 }
