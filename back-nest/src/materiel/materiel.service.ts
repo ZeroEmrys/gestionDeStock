@@ -28,9 +28,9 @@ export class MaterielService {
     }
 
 // update d'un materiel
-    async updateMonMateriel(monMateriel, monUpdatedMateriel: MaterielDTO): Promise<MaterielInterface>{
+    async updateMonMateriel(monMaterielID, monUpdatedMateriel: MaterielDTO): Promise<MaterielInterface>{
         const myMatUpdated = await this.materielModel
-            .findOneAndUpdate(monMateriel, monUpdatedMateriel, {new: true});
+            .findByIdAndUpdate(monMaterielID, monUpdatedMateriel, {new: true});
         return myMatUpdated;
     }
 

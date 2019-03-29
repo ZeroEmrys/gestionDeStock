@@ -10,7 +10,7 @@
       <mat-card>
         <div>
           <mat-form-field class="field-full-width">
-              <input matInput placeholder="{{meMateriel.nom}}" formControlName="nom" #nom [(ngModel)]="meMateriel.nom">
+              <input matInput placeholder="Nom matériel" formControlName="nom" #nom [(ngModel)]="meMateriel.nom">
           </mat-form-field>
         </div>
       <!-- <mat-divider></mat-divider> -->
@@ -57,6 +57,14 @@
             </mat-select>
       </mat-form-field>
       <!-- <mat-divider></mat-divider> -->
+      <br>
+      <mat-form-field>
+        <input matInput id="start-date"  placeholder="{{meMateriel.dateObtention|date:'dd/MM/yyyy'}}"  [matDatepicker]="dateObtention" [value]="dateObtention" formControlName="dateObtention" [(ngModel)]="meMateriel.dateObtention">
+        <mat-datepicker-toggle matSuffix [for]="dateObtention" ></mat-datepicker-toggle>
+        <mat-datepicker #dateObtention></mat-datepicker>
+      </mat-form-field>
+      <br>
+
 
       <br>
         <mat-form-field class="field-full-width">
@@ -77,8 +85,8 @@
     <br>
         <button mat-raised-button color="accent" [routerLink]="['/list']">Revenir dans la list</button>
         <button type="submit" 
-        (click)="addMateriel(nom.value, categorie.value, type.value, myModel.value, 
-        marque.value,fournisseur.value, etat.value, observateur.value,  prixValeur.value, description.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary">  Ajouter </button>
+        (click)="updateMateriel(meMateriel._id, nom.value, categorie.value, type.value,
+        myModel.value,  marque.value, fournisseur.value, etat.value, dateObtention.value, observateur.value, prixValeur.value, description.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary">  Ajouter </button>
       </mat-card>
 
       </form>

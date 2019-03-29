@@ -30,7 +30,7 @@ export class MaterielService {
      return this.http.get(endpoint+ id);
   }
 //adding service
-  addMateriel(nom, categorie, t,  model, marque, fournisseur, etat, dateObtention,observateur,  prixValeur, description){
+  addMateriel(nom, categorie, t,  model, marque, fournisseur, etat, dat,observateur,  prixValeur, description){
     const materiel = {
       nom : nom,
       categorie : categorie,
@@ -39,7 +39,7 @@ export class MaterielService {
       marque : marque,
       fournisseur : fournisseur,
       etat : etat,
-      dateObtention: dateObtention,
+      dateObtention: dat,
       observateur: observateur,
       prix : prixValeur,
       description: description,
@@ -48,22 +48,22 @@ export class MaterielService {
      return this.http.post(endpoint, materiel);
   };
 //update servce
-  updateMateriel(id, nom, categorie, type, model, marque, fournisseur, etat, dateObtention, observateur, prixValeur, description){
-
+  updateMateriel(id, nom, categorie, type, model, marque, fournisseur, etat, dat, observateur, prixValeur, description){
     const materiel = {
       nom : nom,
       categorie : categorie,
       type: type,
-      model : model,
+      myModel : model,
       marque : marque,
       fournisseur : fournisseur,
       etat : etat,
-      dateObtention: dateObtention,
+      dateObtention: dat,
       observateur : observateur, 
+      prix : prixValeur,
       description: description,
-      prixValeur : prixValeur
+
     };
-     return this.http.post(`${endpoint}${id}`, materiel);
+     return this.http.put<IMateriel>(endpoint+id, materiel);
   };
 //delete service
   deleteMateriel(id){

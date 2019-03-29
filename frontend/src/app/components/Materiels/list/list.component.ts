@@ -26,7 +26,8 @@ export class ListComponent implements OnInit {
 
   categorieNom: string;
 
-  displayedColumns = ['nom', 'categorie', 'type', 'model', 'marque', 'fournisseur', 'etat', 'prixValeur', 'detenteur','actions'];
+  // displayedColumns = ['nom', 'categorie', 'type', 'model', 'marque', 'fournisseur', 'etat', 'prixValeur', 'detenteur','actions'];
+  displayedColumns = ['nom', 'categorie', 'type', 'dateObtention', 'fournisseur', 'etat', 'prixValeur', 'detenteur','actions'];
   dataSource = new MatTableDataSource(this.materiels);
 
 //ajour pagination et sort

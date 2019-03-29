@@ -4,9 +4,12 @@ export interface IMateriel{
   nom: String;
   categorie: String;
   type: String,
-  model: String;
+  myModel: String;
   marque: String;
   fournisseur: String;
   etat: String;
+  dateObtention: DataCue;
+  observateur: String;
   priValeur: Number;
+  description: String;
 }

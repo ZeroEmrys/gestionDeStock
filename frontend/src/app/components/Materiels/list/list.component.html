@@ -4,7 +4,7 @@
   <br>
   <div class="filter-header">
     <mat-form-field>
-      <input matInput [(ngModel)]="serarch" placeholder="Filtre">
+      <input matInput [(ngModel)]="serarch" placeholder="Filtre par nom matériels">
     </mat-form-field>
   </div>
   <mat-card>
@@ -30,7 +30,7 @@
         <td mat-cell *matCellDef="let element">{{element.type}}</td>
       </ng-container>
 
-      <ng-container matColumnDef="model">
+      <!-- <ng-container matColumnDef="model">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Model </th>
 
         <td mat-cell *matCellDef="let element">{{element.myModel}}</td>
@@ -39,6 +39,11 @@
       <ng-container matColumnDef="marque">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Marque</th>
         <td mat-cell *matCellDef="let element">{{element.marque}}</td>
+      </ng-container> -->
+
+      <ng-container matColumnDef="dateObtention">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Date d'obtention ()</th>
+        <td mat-cell *matCellDef="let element">{{element.dateObtention|date:'dd/MM/yyyy'}}</td>
       </ng-container>
 
       <ng-container matColumnDef="fournisseur">

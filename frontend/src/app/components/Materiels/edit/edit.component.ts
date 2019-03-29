@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatSort, MatTableDataSource, MatDialog} from '@angular/material';
+import { Component, OnInit} from '@angular/core';
+import { MatDialog} from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ICategorie } from 'src/app/interfaces/interface_categorie';
 import { CategorieService } from 'src/app/services/categorie.service';
@@ -9,9 +9,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DialogCategorie } from '../../categorie/categorie.component';
 import { TypeDialogComponent } from '../../type-dialog/type-dialog.component';
 
-/**
- * @title Table with sorting
- */
 
 @Component({
   selector: 'app-edit',
@@ -49,8 +46,8 @@ constructor(private materielService: MaterielService,
     etat:'',
     dateObtention: Date,
     observateur: '', 
+    prixValeur:'',
     description: '',
-    prixValeur:''
   });
 }
 
@@ -67,12 +64,10 @@ getMateriel(id){
   });
 }
 
-updateMateriel(id, nom, categorie, type, model, marque, fournisseur, observateur, description,dateObtention, etat, priValeur){
-  console.log('valeur du id ', categorie);
-  console.log("*** ", type);
-
-  this.materielService.updateMateriel(id, nom, categorie, type, model, marque, fournisseur, etat, observateur, dateObtention,  description, priValeur).subscribe(()=>{
-    this.router.navigate(['/list']);
+updateMateriel(id, nom, categorie, type, myModel, marque, fournisseur, etat, dateObtention, observateur, prixValeur, description){
+  this.materielService.updateMateriel(id, nom, categorie, type, myModel, marque, fournisseur, etat, this.createForm.value.dateObtention, observateur,  prixValeur, description).subscribe(async (res)=>{
+    console.log('valeur du id ', res);
+    await this.router.navigate(['/list']);
   });
 }
 

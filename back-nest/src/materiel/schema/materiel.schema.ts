@@ -31,7 +31,6 @@ export const MaterielSchema = new mongoose.Schema({
         },
     dateObtention :{
         type: Date,
-        default: Date.now,
         },
     prix : {
         type : Number,
