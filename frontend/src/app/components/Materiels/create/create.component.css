@@ -1,0 +1,13 @@
+.container{
+    background-color: red;
+}
+
+.hit{
+    width: 50%;
+}
+
+mat-cad{
+   max-width: 80%;
+   margin: 2em auto;
+   text-align: center; 
+}
