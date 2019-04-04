@@ -46,10 +46,10 @@ constructor(private materielService: MaterielService,
 }
 
 addMateriel(nom, categorie, type, myModel, marque, fournisseur, etat, dateObtention, observateur, prixValeur,  description){
-  console.log('valeur du id ', prixValeur);
+  console.log('valeur du id ', dateObtention);
   console.log("*** ", description);
 
-  this.materielService.addMateriel(nom, categorie, type, myModel, marque, fournisseur, etat, dateObtention, observateur,  prixValeur, description).subscribe(()=>{
+  this.materielService.addMateriel(nom, categorie, type, myModel, marque, fournisseur, etat, this.createForm.value.dateObtention, observateur,  prixValeur, description).subscribe(()=>{
     this.router.navigate(['/list']);
   });
 }

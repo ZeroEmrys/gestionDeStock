@@ -64,8 +64,8 @@ getMateriel(id){
   });
 }
 
-updateMateriel(id, nom, categorie, type, myModel, marque, fournisseur, etat, dateObtention, observateur, prixValeur, description){
-  this.materielService.updateMateriel(id, nom, categorie, type, myModel, marque, fournisseur, etat, this.createForm.value.dateObtention, observateur,  prixValeur, description).subscribe(async (res)=>{
+updateMateriel(id, nom, categorie, type, myModel, marque, fournisseur, etat, dateObt, observateur, prixValeur, description){
+  this.materielService.updateMateriel(id, nom, categorie, type, myModel, marque, fournisseur, etat, dateObt, observateur,  prixValeur, description).subscribe(async (res)=>{
     console.log('valeur du id ', res);
     await this.router.navigate(['/list']);
   });

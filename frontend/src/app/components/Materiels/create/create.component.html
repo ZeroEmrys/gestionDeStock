@@ -20,6 +20,8 @@
               <mat-select  matInput placeholder="Catégorie matériel" formControlName="categorie" #categorie>
                 <mat-option *ngFor="let categorie of categories" value="{{categorie._id}}">
                   {{categorie.nom}}
+                  <!-- <ng-md-icon icon="delete" size="20"></ng-md-icon> -->
+                  <mat-icon aria-hidden="false" aria-label="Example home icon" svgIcon="thumb-up">home</mat-icon> 
                 </mat-option>
                 <mat-option (click)="openDialogCategorie()">Ajouter catégorie</mat-option>
               </mat-select>
@@ -66,7 +68,7 @@
         </mat-form-field>
         <br>
         <mat-form-field>
-          <input matInput id="start-date"    [matDatepicker]="dateObtention" [value]="dateObtention" formControlName="dateObtention" >
+          <input matInput id="start-date" [matDatepicker]="dateObtention" [value]="dateObtention" formControlName="dateObtention" >
           <mat-datepicker-toggle matSuffix [for]="dateObtention" ></mat-datepicker-toggle>
           <mat-datepicker #dateObtention></mat-datepicker>
         </mat-form-field>

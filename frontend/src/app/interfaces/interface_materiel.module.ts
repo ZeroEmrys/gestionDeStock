@@ -8,7 +8,7 @@ export interface IMateriel{
   marque: String;
   fournisseur: String;
   etat: String;
-  dateObtention: DataCue;
+  dateObtention: Date;
   observateur: String;
   priValeur: Number;
   description: String;
