@@ -44,6 +44,10 @@ constructor(private materielService: MaterielService,
       description: '',
   });
 }
+alertT(){
+  alert("t");
+  console.log("................");
+}
 
 addMateriel(nom, categorie, type, myModel, marque, fournisseur, etat, dateObtention, observateur, prixValeur,  description){
   console.log('valeur du id ', dateObtention);

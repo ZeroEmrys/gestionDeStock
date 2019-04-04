@@ -19,9 +19,19 @@
             <mat-form-field class="demo-full-width">
               <mat-select  matInput placeholder="Catégorie matériel" formControlName="categorie" #categorie>
                 <mat-option *ngFor="let categorie of categories" value="{{categorie._id}}">
-                  {{categorie.nom}}
+                    <table>
+                        <tr>
+                            <td>
+                                {{categorie.nom}}
+      
+                            </td>
+                            <td>
+                                <button (click)="alertT();">sisin</button> 
+                            </td>
+                          </tr>
+                    </table>
+                  
                   <!-- <ng-md-icon icon="delete" size="20"></ng-md-icon> -->
-                  <mat-icon aria-hidden="false" aria-label="Example home icon" svgIcon="thumb-up">home</mat-icon> 
                 </mat-option>
                 <mat-option (click)="openDialogCategorie()">Ajouter catégorie</mat-option>
               </mat-select>
