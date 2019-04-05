@@ -131,4 +131,16 @@ openDialogCategorie(): void{
       });
     });
     }
+    
+  deleteCategorieById(id){
+      this.categorieService.deleteCategorie(id).subscribe(()=>{
+        this.getCategorie();
+      })
+    }
+
+  deleteTypeById(id){
+      this.typeService.deleteType(id).subscribe(()=>{
+        this.getTypes();
+      })
+    }
 }

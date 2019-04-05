@@ -18,6 +18,8 @@
           <mat-select  matInput placeholder="Catégorie matériel" formControlName="categorie" [(ngModel)]="meMateriel.categorie" #categorie>
             <mat-option *ngFor="let categorie of categories" value="{{categorie._id}}">
               {{categorie.nom}}
+              <input type="button" (click)="deleteCategorieById(categorie._id)" class="md-raised" value="x" style="float: right; size: 100% "/>
+
             </mat-option>
             <mat-option (click)="openDialogCategorie()">Ajouter catégorie</mat-option>
           </mat-select>
@@ -27,6 +29,8 @@
           <mat-select  matInput placeholder="Type matériel" formControlName="type" #type [(ngModel)]="meMateriel.type">
             <mat-option *ngFor="let type of types" value="{{type._id}}">
               {{type.nom}}
+              <input type="button" (click)="deleteTypeById(type._id)" class="md-raised" value="x" style="float: right; size: 100% "/>
+
             </mat-option>
             <mat-option (click)="openDialogType()">Ajouter type</mat-option>
           </mat-select>

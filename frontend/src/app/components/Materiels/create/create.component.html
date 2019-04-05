@@ -19,21 +19,8 @@
             <mat-form-field class="demo-full-width">
               <mat-select  matInput placeholder="Catégorie matériel" formControlName="categorie" #categorie>
                 <mat-option *ngFor="let categorie of categories" value="{{categorie._id}}">
-                    {{categorie.nom}} <button (click)="alertT();"></button> 
-
-                    <!-- <table>
-                        <tr>
-                            <td>
-                                {{categorie.nom}}
-      
-                            </td>
-                            <td>
-                                <button (click)="alertT();">sisin</button> 
-                            </td>
-                          </tr>
-                    </table>
-                   -->
-                  <!-- <ng-md-icon icon="delete" size="20"></ng-md-icon> -->
+                  {{categorie.nom}} 
+                  <input type="button" (click)="deleteCategorieById(categorie._id)" class="md-raised" value="x" style="float: right; size: 100% "/>
                 </mat-option>
                 <mat-option (click)="openDialogCategorie()">Ajouter catégorie</mat-option>
               </mat-select>
@@ -43,6 +30,7 @@
                 <mat-select  matInput placeholder="Type matériel" formControlName="type" #type>
                   <mat-option *ngFor="let type of types" value="{{type._id}}">
                    {{type.nom}}
+                   <input type="button" (click)="deleteTypeById(type._id)" class="md-raised" value="x" style="float: right; size: 100% "/>
                   </mat-option>
                  <mat-option (click)="openDialogType()">Ajouter type</mat-option>
                </mat-select>
