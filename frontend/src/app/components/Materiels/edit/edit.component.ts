@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { MatDialog} from '@angular/material';
+import { MatDialog, MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter} from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ICategorie } from 'src/app/interfaces/interface_categorie';
 import { CategorieService } from 'src/app/services/categorie.service';
@@ -8,12 +8,19 @@ import { TypeDialogService } from 'src/app/services/type-dialog.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DialogCategorie } from '../../categorie/categorie.component';
 import { TypeDialogComponent } from '../../type-dialog/type-dialog.component';
+import { MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 
 
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
-  styleUrls: ['./edit.component.css']
+  styleUrls: ['./edit.component.css'],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'fr'},
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+
+  ],
 })
 export class EditComponent implements OnInit {
   createForm : FormGroup;

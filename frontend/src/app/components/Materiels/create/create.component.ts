@@ -4,17 +4,24 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 //inject materiel service
 import { DialogCategorie } from '../../categorie/categorie.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MAT_DATE_LOCALE, MAT_DATE_FORMATS, DateAdapter } from '@angular/material';
 import { ICategorie } from 'src/app/interfaces/interface_categorie';
 import { MaterielService } from 'src/app/services/materiel.service';
 import { CategorieService } from 'src/app/services/categorie.service';
 import { TypeDialogComponent } from '../../type-dialog/type-dialog.component';
 import { TypeDialogService } from 'src/app/services/type-dialog.service';
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  styleUrls: ['./create.component.css'],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'fr'},
+    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
+    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+
+  ],
 })
 export class CreateComponent implements OnInit {
   createForm : FormGroup;

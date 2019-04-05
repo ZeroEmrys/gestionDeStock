@@ -25,6 +25,7 @@ import { TypeDialogComponent } from './components/type-dialog/type-dialog.compon
 import { FilterdataPipe } from './filterdata.pipe';
 
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { DeleteConfirmDialogComponent } from './shared/delete-confirm-dialog/delete-confirm-dialog.component';
   
 
  //configuration of routes
@@ -45,7 +46,8 @@ const routes: Routes = [
     CategorieComponent,
     DialogCategorie,
     TypeDialogComponent,
-    FilterdataPipe
+    FilterdataPipe,
+    DeleteConfirmDialogComponent
 
   ],
   imports: [
@@ -77,7 +79,8 @@ const routes: Routes = [
   ],
   entryComponents: [
     DialogCategorie,
-    TypeDialogComponent
+    TypeDialogComponent,
+    DeleteConfirmDialogComponent
   ],
  //adding service for all component (we do that in providers)
   providers: [MaterielService, CategorieService],

@@ -3,11 +3,12 @@ import { Component, OnInit, ViewChild  } from '@angular/core';
 //injection of router
 import { Router } from '@angular/router';
 //importation of dataSource
-import { MatTableDataSource,  MatSort, MatPaginator } from '@angular/material';
+import { MatTableDataSource,  MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { IMateriel } from 'src/app/interfaces/interface_materiel.module';
 import { MaterielService } from 'src/app/services/materiel.service';
 import { CategorieService } from 'src/app/services/categorie.service';
 import { TypeDialogService } from 'src/app/services/type-dialog.service';
+import { DeleteConfirmDialogComponent } from 'src/app/shared/delete-confirm-dialog/delete-confirm-dialog.component';
 
 
 //inject Materiel
@@ -27,7 +28,7 @@ export class ListComponent implements OnInit {
   categorieNom: string;
 
   // displayedColumns = ['nom', 'categorie', 'type', 'model', 'marque', 'fournisseur', 'etat', 'prixValeur', 'detenteur','actions'];
-  displayedColumns = ['nom', 'categorie', 'type', 'dateObtention', 'fournisseur', 'etat', 'prixValeur', 'detenteur','actions'];
+  displayedColumns = ['nom','model', 'categorie', 'type', 'marque', 'dateObtention', 'fournisseur', 'etat', 'prixValeur', 'detenteur', 'historique','actions'];
   dataSource = new MatTableDataSource(this.materiels);
 
 //ajour pagination et sort
@@ -40,7 +41,7 @@ export class ListComponent implements OnInit {
   constructor(private materielService: MaterielService,
     private categorieService: CategorieService,
     private typeService: TypeDialogService,
-    private router: Router) {
+    private router: Router,  public dialog: MatDialog) {
 
     }
 
@@ -74,6 +75,7 @@ export class ListComponent implements OnInit {
         for (let index = 0; index < data.length; index++) {
           await this.categorieService.getCbyId(data[index].categorie).subscribe((res)=>{
             this.materielsS[index].categorie = res.nom;
+            console.log('categori', res.nom );
          //   console.log(data[index].priValeur);
           });
         }
@@ -120,6 +122,20 @@ sortBy(field: string) {
     this.materielService.deleteMateriel(id).subscribe(()=>{
       this.getAllMateriels();
     });
+  }
+
+  delete(id):void{
+    const dialogRef = this.dialog.open(DeleteConfirmDialogComponent,{
+      width: '250px',
+    });
+    dialogRef.afterClosed().subscribe(result=>{
+      if(result === true){
+        //mark form as dirty
+        this.deleteMateriel(id);
+      }
+      console.log('Matériel éffacer', result);
+    });
+
   }
 
 }
