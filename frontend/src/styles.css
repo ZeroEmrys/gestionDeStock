@@ -1,4 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;  }
+
+mat-toolbar{
+}
+mat-toolbar.toolbarONG{
+    height: 100px;
+    color: #096860;
+}
+
+button.mat-raised-button{
+    background-color: #096860;
+    color: #FFFFFF;
+}
+button.mat-raised-button.delete{
+    background-color: #c40404;
+    color: #FFFFFF;
+}

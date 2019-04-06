@@ -1,0 +1,42 @@
+.mat-card {    
+    text-align: -webkit-center;    
+}
+
+div.row{
+    width: 100%;
+    display: inline;    
+}
+div.rightBlock{
+    float: right;
+    width: 47%;
+}
+div.leftBlock{
+    float: left;
+    width: 47%;
+}
+
+table{
+    border-collapse: collapse;
+    width: 100%;
+}
+.field-full-width{    
+    width: 100%;    
+}
+
+mat-card{
+    min-width: 40%;
+    max-width: 70%;
+    width: 50%;
+    margin: 2em auto;
+    text-align: center; 
+}
+mat-card-content{
+}
+
+mat-toolbar-row {    
+    justify-content: space-between;    
+}
+
+mat-card-title{
+    text-align: center;
+}

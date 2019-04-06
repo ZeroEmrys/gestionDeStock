@@ -1,74 +1,81 @@
-<div>
+<mat-card>
+  <mat-card-title>
+      Modifier : {{meMateriel.nom}}
+  </mat-card-title>   
+<div class="container" >
   <br>
-  <mat-card>
-    <section class="mat-typography">
-      <h2> Edit Matériel {{meMateriel.nom}}</h2>
-    </section>
-    <mat-divider></mat-divider>
-    <br>
+  <mat-card-content>
     <form [formGroup]="createForm" action="" class="create-form" *ngIf="meMateriel">
-      <mat-card>
         <div>
           <mat-form-field class="field-full-width">
               <input matInput placeholder="Nom matériel" formControlName="nom" #nom [(ngModel)]="meMateriel.nom">
           </mat-form-field>
         </div>
       <!-- <mat-divider></mat-divider> -->
-      <mat-form-field class="field-full-width">
-          <mat-select  matInput placeholder="Catégorie matériel" formControlName="categorie" [(ngModel)]="meMateriel.categorie" #categorie>
-            <mat-option *ngFor="let categorie of categories" value="{{categorie._id}}">
-              {{categorie.nom}}
-              <input type="button" (click)="deleteCategorieById(categorie._id)" class="md-raised" value="x" style="float: right; size: 100% "/>
 
-            </mat-option>
-            <mat-option (click)="openDialogCategorie()">Ajouter catégorie</mat-option>
-          </mat-select>
-        </mat-form-field>
+      <div class="row">
+          <div class="leftBlock">
+          <mat-form-field class="field-full-width">
+              <mat-select  matInput placeholder="Catégorie matériel" formControlName="categorie" [(ngModel)]="meMateriel.categorie" #categorie>
+                <mat-option *ngFor="let categorie of categories" value="{{categorie._id}}">
+                  {{categorie.nom}}
+                  <input type="button" (click)="deleteCategorieById(categorie._id)" class="md-raised" value="x" style="float: right; size: 100% "/>
 
-        <mat-form-field class="field-full-width">
-          <mat-select  matInput placeholder="Type matériel" formControlName="type" #type [(ngModel)]="meMateriel.type">
-            <mat-option *ngFor="let type of types" value="{{type._id}}">
-              {{type.nom}}
-              <input type="button" (click)="deleteTypeById(type._id)" class="md-raised" value="x" style="float: right; size: 100% "/>
+                </mat-option>
+                <mat-option (click)="openDialogCategorie()">Ajouter catégorie</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="rightBlock">
+            <mat-form-field class="field-full-width">
+              <mat-select  matInput placeholder="Type matériel" formControlName="type" #type [(ngModel)]="meMateriel.type">
+                <mat-option *ngFor="let type of types" value="{{type._id}}">
+                  {{type.nom}}
+                  <input type="button" (click)="deleteTypeById(type._id)" class="md-raised" value="x" style="float: right; size: 100% "/>
 
-            </mat-option>
-            <mat-option (click)="openDialogType()">Ajouter type</mat-option>
-          </mat-select>
-        </mat-form-field>
+                </mat-option>
+                <mat-option (click)="openDialogType()">Ajouter type</mat-option>
+              </mat-select>
+              </mat-form-field>
+            </div>
+        </div>
 
 
-      <br>
       <mat-form-field class="field-full-width">
           <input matInput placeholder="Code matériel" formControlName="myModel" #myModel [(ngModel)]="meMateriel.myModel">
       </mat-form-field>
       <!-- <mat-divider></mat-divider> -->
-      <br>
+
       <mat-form-field class="field-full-width">
           <input matInput placeholder="Marque matériel" formControlName="marque" #marque [(ngModel)]="meMateriel.marque">
       </mat-form-field>
       <!-- <mat-divider></mat-divider> -->
-      <br>
+
       <mat-form-field class="field-full-width">
           <input matInput placeholder="Fournisseur / Donnateur matériel" formControlName="fournisseur" #fournisseur [(ngModel)]="meMateriel.fournisseur">
       </mat-form-field>
       <!-- <mat-divider></mat-divider> -->
-      <br>
-      <mat-form-field class="field-full-width">
-            <mat-select  matInput placeholder="Etat matériel" formControlName="etat" #etat [(ngModel)]="meMateriel.etat">
-              <mat-option value="bon"> bon </mat-option>
-              <mat-option value="Moyen">Moyen</mat-option>
-              <mat-option value="Mauvais">Mauvais</mat-option>
-            </mat-select>
-      </mat-form-field>
-      <!-- <mat-divider></mat-divider> -->
-      <br>
-      <mat-form-field>
-        <input matInput id="start-date"  placeholder="{{meMateriel.dateObtention|date:'dd/MM/yyyy'}}"  [matDatepicker]="dateObtention" [value]="dateObtention" formControlName="dateObtention" [(ngModel)]="meMateriel.dateObtention">
-        <mat-datepicker-toggle matSuffix [for]="dateObtention" ></mat-datepicker-toggle>
-        <mat-datepicker #dateObtention></mat-datepicker>
-      </mat-form-field>
-      <br>
 
+      <div class="row">
+          <div class="leftBlock">
+            <mat-form-field class="field-full-width">
+                  <mat-select  matInput placeholder="Etat matériel" formControlName="etat" #etat [(ngModel)]="meMateriel.etat">
+                    <mat-option value="bon"> bon </mat-option>
+                    <mat-option value="Moyen">Moyen</mat-option>
+                    <mat-option value="Mauvais">Mauvais</mat-option>
+                  </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="rightBlock">
+            <mat-form-field class="field-full-width">
+              <input matInput id="start-date"  placeholder="{{meMateriel.dateObtention|date:'dd/MM/yyyy'}}"  [matDatepicker]="dateObtention" [value]="dateObtention" formControlName="dateObtention" [(ngModel)]="meMateriel.dateObtention">
+              <mat-datepicker-toggle matSuffix [for]="dateObtention" ></mat-datepicker-toggle>
+              <mat-datepicker #dateObtention></mat-datepicker>
+            </mat-form-field>
+           </div>
+      </div>
+
+      
 
       <br>
         <mat-form-field class="field-full-width">
@@ -77,7 +84,7 @@
 
       <br>
       <mat-form-field class="field-full-width">
-          <input matInput placeholder="Prix valeur matériel (Ar)"  formControlName="prixValeur" #prixValeur digitonly [(ngModel)]="meMateriel.prix">
+          <input matInput type="number" placeholder="Prix valeur matériel (Ar)"  formControlName="prixValeur" #prixValeur digitonly [(ngModel)]="meMateriel.prix">
       </mat-form-field>
 
       <br>
@@ -87,13 +94,11 @@
 
     <!-- <mat-divider></mat-divider> -->
     <br>
-        <button mat-raised-button color="accent" [routerLink]="['/list']">Revenir dans la list</button>
+        <button mat-raised-button color="accent" [routerLink]="['/list']">Revenir dans la list</button> &nbsp; &nbsp;
         <button type="submit" 
         (click)="updateMateriel(meMateriel._id, nom.value, categorie.value, type.value,
-        myModel.value,  marque.value, fournisseur.value, etat.value, dateObtention.value, observateur.value, prixValeur.value, description.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary">  Modifier </button>
-      </mat-card>
-
+        myModel.value,  marque.value, fournisseur.value, etat.value, dateObtention.value, observateur.value, prixValeur.value, description.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button>  Modifier </button>
       </form>
-
-  </mat-card>
-</div>
+    </mat-card-content>
+  </div>
+</mat-card>

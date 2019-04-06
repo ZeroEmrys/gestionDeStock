@@ -1,104 +1,102 @@
-<div [class]="container" style="background-color: red;">
-    <mat-card>
+   
+   <mat-card>
         <mat-card-title>
-            <!-- <h2> Ajout Matériel : <h1 id="nomMaterielTitre">{{name}}</h1></h2> -->
-            <h2> Ajout Matériel </h2>
+            Ajouter : {{name}}
         </mat-card-title> 
-    <mat-divider></mat-divider>
+    <div class="container" >
+      <br>
     <mat-card-content>
-      <form [formGroup]="createForm" action="" class="create-form" >
-        <table >
-          <div class="row">
-            <mat-form-field class="demo-full-width">
+      <form [formGroup]="createForm" action="" class="form-control" >
+            <mat-form-field class="field-full-width">
                 <input matInput placeholder="Nom matériel" formControlName="nom" [(ngModel)]="name"  #nom>
             </mat-form-field>
-          </div>
         <!-- <mat-divider></mat-divider> -->
-          <div class="row">
 
-            <mat-form-field class="demo-full-width">
-              <mat-select  matInput placeholder="Catégorie matériel" formControlName="categorie" #categorie>
-                <mat-option *ngFor="let categorie of categories" value="{{categorie._id}}">
-                  {{categorie.nom}} 
-                  <input type="button" (click)="deleteCategorieById(categorie._id)" class="md-raised" value="x" style="float: right; size: 100% "/>
-                </mat-option>
-                <mat-option (click)="openDialogCategorie()">Ajouter catégorie</mat-option>
-              </mat-select>
-              </mat-form-field>
-              <br>
-              <mat-form-field class="demo-full-width">
-                <mat-select  matInput placeholder="Type matériel" formControlName="type" #type>
-                  <mat-option *ngFor="let type of types" value="{{type._id}}">
-                   {{type.nom}}
-                   <input type="button" (click)="deleteTypeById(type._id)" class="md-raised" value="x" style="float: right; size: 100% "/>
+          <div class="row">
+            <div class="leftBlock">
+              <mat-form-field class="field-full-width" >
+                <mat-select  matInput placeholder="Catégorie matériel" formControlName="categorie" #categorie>
+                  <mat-option *ngFor="let categorie of categories" value="{{categorie._id}}">
+                    {{categorie.nom}} 
+                    <input type="button" (click)="deleteCategorieById(categorie._id)" class="md-raised" value="x" style="float: right; size: 100% "/>
                   </mat-option>
-                 <mat-option (click)="openDialogType()">Ajouter type</mat-option>
-               </mat-select>
+                  <mat-option (click)="openDialogCategorie()">Ajouter catégorie</mat-option>
+                </mat-select>
               </mat-form-field>
             </div>
+            <div class="rightBlock">
+            <mat-form-field  class="field-full-width">
+                <mat-select  matInput placeholder="Type matériel" formControlName="type" #type>
+                  <mat-option *ngFor="let type of types" value="{{type._id}}">
+                    {{type.nom}}
+                    <input type="button" (click)="deleteTypeById(type._id)" class="md-raised" value="x" style="float: right; size: 100% "/>
+                  </mat-option>
+                  <mat-option (click)="openDialogType()">Ajouter type</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            </div>
 
-        <br>
-        
-        <mat-form-field class="field-full-width">
-          <input matInput placeholder="Code matériel" formControlName="myModel" #myModel>
-        </mat-form-field>
-        <!-- <mat-divider></mat-divider> -->
-        <br>
-
-
-        <mat-form-field class="field-full-width">
-          <input matInput placeholder="SN/Réference" formControlName="marque" #marque>
-        </mat-form-field>
-        <!-- <mat-divider></mat-divider> -->
-        <br>
-
-        <mat-form-field class="field-full-width">
-          <input matInput placeholder="fournisseur / donnateur matériel" formControlName="fournisseur" #fournisseur>
-        </mat-form-field>
-        <!-- <mat-divider></mat-divider> -->
-        <br>
-
-        
-        <mat-form-field class="field-full-width">
-              <mat-select  matInput placeholder="Etat matériel" formControlName="etat" #etat>
-                <mat-option value="bon"> bon </mat-option>
-                <mat-option value="Moyen">Moyen</mat-option>
-                <mat-option value="Mauvais">Mauvais</mat-option>
-              </mat-select>
-        </mat-form-field>
-        <br>
-        <mat-form-field>
-          <input matInput id="start-date" [matDatepicker]="dateObtention" [value]="dateObtention" formControlName="dateObtention" >
-          <mat-datepicker-toggle matSuffix [for]="dateObtention" ></mat-datepicker-toggle>
-          <mat-datepicker #dateObtention></mat-datepicker>
-        </mat-form-field>
-        <br>
-
-        <!-- <mat-divider></mat-divider> -->
-        <mat-form-field class="field-full-width">
-          <input matInput placeholder="Detenteur/Emplacement" formControlName="observateur" #observateur>
+      
+          <mat-form-field  class="field-full-width">
+            <input matInput placeholder="Code matériel" formControlName="myModel" #myModel>
           </mat-form-field>
-         <!-- <mat-divider></mat-divider> -->
-        <br> 
-        <br>
-          <mat-form-field class="field-full-width">
+        <!-- <mat-divider></mat-divider> -->
+      
+      
+
+          <mat-form-field  class="field-full-width">
+            <input matInput placeholder="SN/Réference" formControlName="marque" #marque>
+          </mat-form-field>
+          <!-- <mat-divider></mat-divider> -->
+     
+          <mat-form-field  class="field-full-width">
+            <input matInput placeholder="fournisseur / donnateur matériel" formControlName="fournisseur" #fournisseur>
+          </mat-form-field>
+          <!-- <mat-divider></mat-divider> -->
+       
+
+        <div class="row">
+          <div class="leftBlock">
+            <mat-form-field  class="field-full-width">
+                  <mat-select  matInput placeholder="Etat matériel" formControlName="etat" #etat>
+                    <mat-option value="bon"> bon </mat-option>
+                    <mat-option value="Moyen">Moyen</mat-option>
+                    <mat-option value="Mauvais">Mauvais</mat-option>
+                  </mat-select>
+            </mat-form-field> 
+            </div>
+            <div class="rightBlock">
+            <mat-form-field  class="field-full-width">
+              <input matInput id="start-date" [matDatepicker]="dateObtention" [value]="dateObtention" formControlName="dateObtention" >
+              <mat-datepicker-toggle matSuffix [for]="dateObtention" ></mat-datepicker-toggle>
+              <mat-datepicker #dateObtention></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </div>
+
+          <!-- <mat-divider></mat-divider> -->
+          <mat-form-field  class="field-full-width">
+            <input matInput placeholder="Detenteur/Emplacement" formControlName="observateur" #observateur>
+          </mat-form-field>
+          <!-- <mat-divider></mat-divider> -->
+       
+          <mat-form-field  class="field-full-width">
               <input matInput placeholder="Prix valeur matériel (Ar)"  formControlName="prixValeur" #prixValeur digitonly>
           </mat-form-field>
-        <br>
-          <mat-form-field class="field-full-width">
+
+          <mat-form-field  class="field-full-width">
             <textarea matInput placeholder="Historique" formControlName="description" #description></textarea>
-        </mat-form-field>
-        <!-- <mat-divider></mat-divider> -->
-        <br>
-
+          </mat-form-field>
+         <!-- <mat-divider></mat-divider> -->
       <!-- <mat-divider></mat-divider> -->
-      <br>
-          <button mat-raised-button color="accent" [routerLink]="['/list']">Revenir dans la list</button>
-          <button type="submit" (click)="addMateriel(nom.value, categorie.value, type.value,
-          myModel.value,  marque.value, fournisseur.value, etat.value, dateObtention.value,  observateur.value, prixValeur.value, description.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button color="primary">  Ajouter </button>
-        </table>
 
+      <br>
+          <button mat-raised-button color="accent" [routerLink]="['/list']">Revenir dans la list</button> &nbsp; &nbsp;
+          <button type="submit" (click)="addMateriel(nom.value, categorie.value, type.value,
+          myModel.value,  marque.value, fournisseur.value, etat.value, dateObtention.value,  observateur.value, prixValeur.value, description.value)" [disabled]="createForm.pristine || createForm.invalid" mat-raised-button >  Ajouter </button>
+        <!-- </table> -->
         </form>
       </mat-card-content>
-    </mat-card>
-  </div>
+    </div>
+</mat-card>

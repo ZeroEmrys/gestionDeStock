@@ -1,20 +1,19 @@
 
 
 <div class="mat-elevation-z8">
-  <br>
   <div class="filter-header">
     <mat-form-field>
       <input matInput [(ngModel)]="serarch" placeholder="Filtre par nom matériels">
     </mat-form-field>
   </div>
   <mat-card>
-    <button mat-raised-button color="primary" [routerLink]="['/create']">
+    <button mat-raised-button [routerLink]="['/create']">
       Ajouter matériel
     </button>
     <br><br>
     <mat-divider></mat-divider>
     <br>
-    <table mat-table   [dataSource]="materielsS |filterdata:serarch:'nom'" matSort class="mat-elevation-z8">
+    <table mat-table   [dataSource]="materiels |filterdata:serarch:'nom'" matSort class="mat-elevation-z8">
       <ng-container matColumnDef="nom" >
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Nom</th>
         <td mat-cell *matCellDef="let element">{{element.nom}}</td>
@@ -77,8 +76,8 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef class="mat-column-right">Actions</th>
         <td mat-cell *matCellDef="let element" class="mat-column-right">
-            <button mat-button color="primary"(click)="editMateriel(element._id)" > Modifier </button>
-            <button mat-button color="warm" (click)="delete(element._id)"> Supprimer </button>
+            <button mat-raised-button (click)="editMateriel(element._id)" > Modifier </button> &nbsp;
+            <button mat-raised-button class="delete" (click)="delete(element._id)"> Supprimer </button>
         </td>
       </ng-container>
 <!--  displaying all component -->

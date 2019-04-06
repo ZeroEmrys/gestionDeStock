@@ -9,11 +9,10 @@ import { MaterielService } from 'src/app/services/materiel.service';
 import { CategorieService } from 'src/app/services/categorie.service';
 import { TypeDialogService } from 'src/app/services/type-dialog.service';
 import { DeleteConfirmDialogComponent } from 'src/app/shared/delete-confirm-dialog/delete-confirm-dialog.component';
+import { observable } from 'rxjs';
 
 
 //inject Materiel
-declare var $: any;
-
 
 @Component({
   selector: 'app-list',
@@ -22,7 +21,8 @@ declare var $: any;
 })
 export class ListComponent implements OnInit {
 //initialisation of the class
-  materiels =  [];
+  materiels: any =  [];
+  
   materielsS :  IMateriel[]=[];
 
   categorieNom: string;
@@ -42,12 +42,11 @@ export class ListComponent implements OnInit {
     private categorieService: CategorieService,
     private typeService: TypeDialogService,
     private router: Router,  public dialog: MatDialog) {
-
     }
 
   ngOnInit() {
     this.getAllMateriels();
-    $('#input-search').focus();
+    //$('#input-search').focus();
 
   }
 
@@ -70,20 +69,21 @@ export class ListComponent implements OnInit {
       .subscribe(async (data:IMateriel[]) => {
         this.dataSource.data = data
         this.materielsS = await data;
+        this.materiels = data;
+        this.materiels.categorie ="";
+        this.materiels.type = "";
         console.log(data);
 // on prend les nom des categories
         for (let index = 0; index < data.length; index++) {
-          await this.categorieService.getCbyId(data[index].categorie).subscribe((res)=>{
-            this.materielsS[index].categorie = res.nom;
-            console.log('categori', res.nom );
-         //   console.log(data[index].priValeur);
+          
+          await this.categorieService.getCbyId(data[index].categorie).subscribe((res)=> {
+            this.materiels[index].categorie = res.nom;
           });
         }
 
         for (let index = 0; index < data.length; index++) {
           await this.typeService.getTbyId(data[index].type).subscribe((res)=>{
-            this.materielsS[index].type = res.nom;
-         //   console.log(data[index].priValeur);
+            this.materiels[index].type = res.nom;
           });
         }
         console.log('Donné alaina...');
@@ -115,7 +115,7 @@ sortBy(field: string) {
 
 // edit for button
   editMateriel(id){
-     this.router.navigate([`/edit/${id}`]);
+     this.router.navigate(['/edit/',id]);
   }
 // delete for button
   deleteMateriel(id){
